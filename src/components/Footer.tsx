@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 const footerLinks = [
   { label: "Inicio",    href: "#inicio" },
   { label: "Servicios", href: "#servicios" },
@@ -13,10 +15,11 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <a href="#inicio" className="flex items-center group relative w-48 h-12 mb-5">
-              <img 
+              <Image 
                 src="/logo.svg" 
                 alt="Zamora Global Services Logo" 
-                className="w-full h-full object-contain brightness-0 invert drop-shadow-md"
+                fill
+                className="object-contain brightness-0 invert drop-shadow-md"
               />
             </a>
             <p className="text-blue-300/70 text-sm leading-relaxed max-w-xs">
@@ -75,7 +78,6 @@ export default function Footer() {
         {/* Bottom */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-blue-400/60 text-xs">
           <p>© {new Date().getFullYear()} ZGS. Todos los derechos reservados.</p>
-          <p>Diseñado con ❤️ para el éxito de tu empresa</p>
         </div>
       </div>
 
