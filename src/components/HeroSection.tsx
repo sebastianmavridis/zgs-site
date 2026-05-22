@@ -63,7 +63,6 @@ export default function HeroSection() {
           <div className="animate-fade-up delay-400 grid grid-cols-3 gap-6 pt-6 border-t border-white/10">
             {[
               { value: "100%", label: "Cumplimiento" },
-              { value: "Integral", label: "Acompañamiento" },
               { value: "Seguro", label: "Crecimiento" },
             ].map((stat) => (
               <div key={stat.label} className="text-center">
@@ -74,27 +73,53 @@ export default function HeroSection() {
           </div>
         </div>
 
-        {/* Right — Floating card */}
-        <div className="hidden lg:flex justify-center items-center">
-          <div className="animate-float glass rounded-3xl p-8 max-w-sm w-full shadow-2xl border border-white/10">
-            {/* Placeholder for company image */}
-            <div className="w-full h-48 rounded-2xl bg-gradient-to-br from-blue-500/20 to-blue-700/20 flex items-center justify-center mb-6 border border-white/10 relative overflow-hidden group">
+        {/* Right — Floating cards */}
+        <div className="hidden lg:flex flex-row gap-6 justify-center items-center w-full">
+          {/* Card 1: Legal */}
+          <div className="animate-float glass rounded-3xl p-6 max-w-sm w-[320px] shadow-2xl border border-white/10">
+            <div className="w-full h-32 rounded-2xl bg-gradient-to-br from-blue-500/20 to-blue-700/20 flex items-center justify-center mb-5 border border-white/10 relative overflow-hidden group">
               <div className="absolute inset-0 bg-blue-400/20 blur-2xl group-hover:bg-blue-400/30 transition-all duration-500" />
               {/* Balanza de la justicia */}
-              <svg xmlns="http://www.w3.org/2000/svg" className="w-24 h-24 text-blue-300/80 drop-shadow-2xl relative z-10 transform group-hover:scale-105 transition-transform duration-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg xmlns="http://www.w3.org/2000/svg" className="w-16 h-16 text-blue-300/80 drop-shadow-2xl relative z-10 transform group-hover:scale-105 transition-transform duration-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
               </svg>
             </div>
-            <h3 className="text-white font-medium text-xl mb-2">Servicios Legales</h3>
+            <h3 className="text-white font-medium text-lg mb-3">Servicios Legales</h3>
             <ul className="space-y-2">
               {[
                 "Constitución y estructura empresarial",
                 "Control corporativo y legal",
-                "Control fiscal y contable",
-                "Gestión de nómina y laboral"
+                "Derecho corporativo y contractual",
+                "Trámites migratorios (INM)"
               ].map((item) => (
-                <li key={item} className="flex items-center gap-2 text-blue-100/80 text-sm">
+                <li key={item} className="flex items-center gap-2 text-blue-100/90 text-sm">
                   <span className="w-1.5 h-1.5 rounded-full bg-blue-400 flex-shrink-0" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Card 2: Fiscal */}
+          <div className="animate-float glass rounded-3xl p-6 max-w-sm w-[320px] shadow-2xl border border-white/10" style={{ animationDelay: '1s' }}>
+            <div className="w-full h-32 rounded-2xl bg-gradient-to-br from-cyan-500/20 to-cyan-700/20 flex items-center justify-center mb-5 border border-white/10 relative overflow-hidden group">
+              <div className="absolute inset-0 bg-cyan-400/20 blur-2xl group-hover:bg-cyan-400/30 transition-all duration-500" />
+              {/* Calculadora */}
+              <svg xmlns="http://www.w3.org/2000/svg" className="w-16 h-16 text-cyan-300/80 drop-shadow-2xl relative z-10 transform group-hover:scale-105 transition-transform duration-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <h3 className="text-white font-medium text-lg mb-3">Servicios Fiscales</h3>
+            <ul className="space-y-2">
+              {[
+                "Control contable y fiscal",
+                "Cumplimiento ante SAT",
+                "Nómina y seguridad social",
+                "Facturación y CFDI",
+                "Regularización fiscal"
+              ].map((item) => (
+                <li key={item} className="flex items-center gap-2 text-cyan-100/90 text-sm">
+                  <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 flex-shrink-0" />
                   {item}
                 </li>
               ))}

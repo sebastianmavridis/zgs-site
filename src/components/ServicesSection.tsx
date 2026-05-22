@@ -114,18 +114,36 @@ const services = [
   {
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        {/* Portafolio icon */}
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
       </svg>
     ),
-    title: "Servicios Fiscales y Contables",
+    title: "Servicios Fiscales",
     bullets: [
-      "Contabilidad general y facturación CFDI 4.0",
-      "Gestión de Nómina (SUA, IMSS, INFONAVIT)",
-      "Cumplimiento de obligaciones fiscales (ISR, IVA, DIOT)",
-      "Trámites fiscales (SAT, opiniones, constancias)",
-      "Actualización de actividades y cambios de régimen"
+      "Control contable y fiscal",
+      "Cumplimiento ante SAT",
+      "Nómina y seguridad social",
+      "Facturación y CFDI",
+      "Regularización fiscal"
     ],
     tag: "Fiscal",
+  },
+  {
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v2h-2zm0 4h2v6h-2z"/>
+      </svg>
+    ),
+    title: "Servicios ante el Instituto Nacional de Migración (INM)",
+    description: "",
+    bullets: [
+      "Residencia temporal, permanente y renovaciones",
+      "Permisos de trabajo y contratación de extranjeros",
+      "Alta de empleadores ante el INM",
+      "Obtención de CURP y RFC",
+      "Asesoría y acompañamiento a inversionistas"
+    ],
+    tag: "Migratorio",
   },
   {
     icon: (
@@ -183,6 +201,14 @@ export default function ServicesSection() {
               <h3 className="text-xl font-medium text-blue-950 mb-4 group-hover:text-blue-700 transition-colors">
                 {service.title}
               </h3>
+              
+              {/* Optional description (used in INM service) */}
+              {service.description && (
+                <p className="text-gray-500 text-sm mb-4 leading-relaxed">
+                  {service.description}
+                </p>
+              )}
+
               <ul className="space-y-2">
                 {(service.bullets || []).map((bullet, idx) => (
                   <li key={idx} className="flex items-start gap-2 text-gray-500 text-sm leading-relaxed">

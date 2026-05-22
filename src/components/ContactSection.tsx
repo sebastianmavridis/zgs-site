@@ -3,9 +3,9 @@ import { useState } from "react";
 
 // ─── CONFIG — Edita estos datos ───────────────────────────────────────────────
 const CONFIG = {
-  whatsapp: "525627739300",            // Número con código de país, sin "+"
+  whatsapp: "525534623727",            // Número con código de país, sin "+"
   whatsappMsg: "Hola, me gustaría recibir más información sobre sus servicios.",
-  phone: "+52 56 2773 9300",
+  phone: "+52 55 3462 3727",
   email: "contacto@zgs.com",
   address: "Av. Ejército Nacional Mexicano 425, Chapultepec Morales, Granada, Miguel Hidalgo, 11520 Ciudad de México, CDMX",
   instagram: "https://instagram.com/zgs",
@@ -14,7 +14,7 @@ const CONFIG = {
   twitter: "https://twitter.com/zgs",
   // Google Maps embed — reemplaza con tu ubicación real
   mapSrc:
-    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d247431.59546752037!2d-90.65379!3d14.634915!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8589a1d7fa744e09%3A0x97c60c82a79673b5!2sGuatemala%20City%2C%20Guatemala!5e0!3m2!1sen!2sgt!4v1714000000000",
+    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15050.211786636733!2d-99.197022!3d19.4326077!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d2020215dfae79%3A0xbcc005cc94747eb6!2sAv.%20Ej%C3%A9rcito%20Nacional%20Mexicano%20425%2C%20Granada%2C%20Miguel%20Hidalgo%2C%2011520%20Ciudad%20de%20M%C3%A9xico%2C%20CDMX!5e0!3m2!1sen!2smx!4v1700000000000",
 };
 
 const socialLinks = [
@@ -151,25 +151,6 @@ export default function ContactSection() {
                 <div className="font-semibold text-blue-700 mt-1">{CONFIG.email}</div>
               </div>
             </a>
-
-            {/* Social Networks */}
-            <div className="p-6 rounded-3xl bg-white border border-blue-100 shadow-sm">
-              <h4 className="font-medium text-blue-950 mb-4">Síguenos en redes</h4>
-              <div className="flex gap-3">
-                {socialLinks.map((soc) => (
-                  <a
-                    key={soc.name}
-                    href={soc.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={soc.name}
-                    className="w-12 h-12 rounded-2xl bg-blue-50 hover:bg-blue-600 text-blue-600 hover:text-white flex items-center justify-center transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/30 hover:scale-110"
-                  >
-                    {soc.icon}
-                  </a>
-                ))}
-              </div>
-            </div>
           </div>
 
           {/* RIGHT — Contact Form */}
@@ -186,7 +167,7 @@ export default function ContactSection() {
               </div>
             )}
 
-            <form onSubmit={handleSubmit} className="space-y-5">
+            <form onSubmit={handleSubmit} className="space-y-5" suppressHydrationWarning>
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-blue-900 mb-1.5">Nombre completo</label>
                 <input
@@ -197,6 +178,7 @@ export default function ContactSection() {
                   value={form.name}
                   onChange={handleChange}
                   placeholder="Tu nombre"
+                  suppressHydrationWarning
                   className="w-full px-5 py-3.5 rounded-2xl border border-blue-100 bg-blue-50/30 text-blue-950 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-400 transition-all duration-200 text-sm"
                 />
               </div>
@@ -210,6 +192,7 @@ export default function ContactSection() {
                   value={form.email}
                   onChange={handleChange}
                   placeholder="correo@empresa.com"
+                  suppressHydrationWarning
                   className="w-full px-5 py-3.5 rounded-2xl border border-blue-100 bg-blue-50/30 text-blue-950 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-400 transition-all duration-200 text-sm"
                 />
               </div>
@@ -223,6 +206,7 @@ export default function ContactSection() {
                   value={form.message}
                   onChange={handleChange}
                   placeholder="Cuéntanos cómo podemos ayudarte..."
+                  suppressHydrationWarning
                   className="w-full px-5 py-3.5 rounded-2xl border border-blue-100 bg-blue-50/30 text-blue-950 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-400 transition-all duration-200 text-sm resize-none"
                 />
               </div>
