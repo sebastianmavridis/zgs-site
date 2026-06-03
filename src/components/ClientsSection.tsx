@@ -1,9 +1,9 @@
 const clients = [
-  { name: "ONME", sector: "Prestadora de servicios", initials: "ON" },
-  { name: "MEIYANG", sector: "Talento", initials: "ME" },
-  { name: "SUPER OCEAN", sector: "Logística", initials: "SO" },
-  { name: "CRECIMIENTO SIN FRONTERAS", sector: "Ecommerce", initials: "CF" },
-  { name: "Gana Choy", sector: "Ecommerce", initials: "GC" },
+  { name: "ONME", sector: "Service provider", initials: "ON" },
+  { name: "MEIYANG", sector: "Talent", initials: "ME" },
+  { name: "SUPER OCEAN", sector: "Logistics", initials: "SO" },
+  { name: "CRECIEMIENTO SIN FRONTERAS", sector: "Ecommerce", initials: "CF" },
+  { name: "GANA CHOY", sector: "Ecommerce", initials: "GC" },
   { name: "CLANSERTA ALBA", sector: "Ecommerce", initials: "CA" },
 ];
 
