@@ -60,17 +60,7 @@ export default function HeroSection() {
           </div>
 
           {/* Stats */}
-          <div className="animate-fade-up delay-400 grid grid-cols-3 gap-6 pt-6 border-t border-white/10">
-            {[
-              { value: "100%", label: "Cumplimiento" },
-              { value: "Seguro", label: "Crecimiento" },
-            ].map((stat) => (
-              <div key={stat.label} className="text-center">
-                <div className="text-2xl font-semibold text-white">{stat.value}</div>
-                <div className="text-blue-300 text-sm mt-1">{stat.label}</div>
-              </div>
-            ))}
-          </div>
+          
         </div>
 
         {/* Right — Floating cards */}
