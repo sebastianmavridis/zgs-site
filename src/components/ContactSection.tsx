@@ -6,7 +6,7 @@ const CONFIG = {
   whatsapp: "525534623727",            // Número con código de país, sin "+"
   whatsappMsg: "Hola, me gustaría recibir más información sobre sus servicios.",
   phone: "+52 55 3462 3727",
-  email: "contacto@zgs.com",
+  email: "contacto@zgs.com.mx",
   address: "Av. Ejército Nacional Mexicano 425, Chapultepec Morales, Granada, Miguel Hidalgo, 11520 Ciudad de México, CDMX",
   instagram: "https://instagram.com/zgs",
   facebook: "https://facebook.com/zgs",

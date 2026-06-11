@@ -3,7 +3,6 @@ const clients = [
   { name: "MEIYANG", sector: "Talent", initials: "ME" },
   { name: "SUPER OCEAN", sector: "Logistics", initials: "SO" },
   { name: "CRECIEMIENTO SIN FRONTERAS", sector: "Ecommerce", initials: "CF" },
-  { name: "GANA CHOY", sector: "Ecommerce", initials: "GC" },
   { name: "CLANSERTA ALBA", sector: "Ecommerce", initials: "CA" },
 ];
 
