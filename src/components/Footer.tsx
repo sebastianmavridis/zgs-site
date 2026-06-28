@@ -84,7 +84,7 @@ export default function Footer() {
       {/* Floating WhatsApp button */}
       <a
         id="floating-whatsapp"
-        href="https://wa.me/525627739300?text=Hola%2C%20me%20gustar%C3%ADa%20recibir%20m%C3%A1s%20informaci%C3%B3n%20sobre%20sus%20servicios."
+        href="https://wa.me/525534623727?text=Hola%2C%20me%20gustar%C3%ADa%20recibir%20m%C3%A1s%20informaci%C3%B3n%20sobre%20sus%20servicios."
         target="_blank"
         rel="noopener noreferrer"
         aria-label="WhatsApp flotante"

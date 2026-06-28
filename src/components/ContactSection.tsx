@@ -58,18 +58,43 @@ const socialLinks = [
 
 export default function ContactSection() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
-  const [sent, setSent] = useState(false);
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error" | "mock-success">("idle");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Aquí conecta tu backend / Formspree / etc.
-    setSent(true);
-    setTimeout(() => setSent(false), 4000);
-    setForm({ name: "", email: "", message: "" });
+    setStatus("loading");
+    setErrorMessage("");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(form),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setStatus("success");
+        setForm({ name: "", email: "", message: "" });
+      } else if (response.status === 501 && data.mockSuccess) {
+        setStatus("mock-success");
+        setForm({ name: "", email: "", message: "" });
+      } else {
+        setErrorMessage(data.error || "Ocurrió un error al enviar el mensaje.");
+        setStatus("error");
+      }
+    } catch (error) {
+      setErrorMessage("No se pudo conectar con el servidor de correo. Por favor, inténtelo de nuevo.");
+      setStatus("error");
+    }
   };
 
   const waLink = `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(CONFIG.whatsappMsg)}`;
@@ -158,12 +183,35 @@ export default function ContactSection() {
             <h3 className="text-2xl font-medium text-blue-950 mb-2">Envíanos un mensaje</h3>
             <p className="text-gray-400 text-sm mb-8">Completa el formulario y te contactaremos a la brevedad.</p>
 
-            {sent && (
+            {status === "success" && (
               <div className="mb-6 px-5 py-4 rounded-2xl bg-green-50 border border-green-200 text-green-700 text-sm font-medium flex items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
                 ¡Mensaje enviado! Te contactaremos pronto.
+              </div>
+            )}
+
+            {status === "mock-success" && (
+              <div className="mb-6 px-5 py-4 rounded-2xl bg-amber-50 border border-amber-200 text-amber-800 text-sm font-medium flex flex-col gap-1.5">
+                <div className="flex items-center gap-2 font-semibold">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                  </svg>
+                  <span>Formulario simulado con éxito</span>
+                </div>
+                <p className="text-xs text-amber-700 leading-relaxed">
+                  El formulario de contacto funciona correctamente. Sin embargo, para enviar correos reales, recuerda configurar las credenciales SMTP en tu archivo de entorno (<code>.env</code>).
+                </p>
+              </div>
+            )}
+
+            {status === "error" && (
+              <div className="mb-6 px-5 py-4 rounded-2xl bg-red-50 border border-red-200 text-red-700 text-sm font-medium flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                </svg>
+                {errorMessage}
               </div>
             )}
 
@@ -213,9 +261,20 @@ export default function ContactSection() {
               <button
                 type="submit"
                 id="submit-form-btn"
-                className="w-full py-4 rounded-2xl btn-shimmer text-white font-semibold shadow-xl shadow-blue-500/30 hover:shadow-blue-500/50 transition-all duration-300 text-base"
+                disabled={status === "loading"}
+                className="w-full py-4 rounded-2xl btn-shimmer text-white font-semibold shadow-xl shadow-blue-500/30 hover:shadow-blue-500/50 transition-all duration-300 text-base disabled:opacity-75 disabled:cursor-not-allowed flex items-center justify-center gap-2"
               >
-                Enviar mensaje →
+                {status === "loading" ? (
+                  <>
+                    <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Enviando...
+                  </>
+                ) : (
+                  "Enviar mensaje →"
+                )}
               </button>
             </form>
           </div>
